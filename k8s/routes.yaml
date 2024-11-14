@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: echo-server-edge
+  name: echo-edge
 spec:
   subdomain: echo-edge
   port:
@@ -18,26 +18,25 @@ spec:
 # apiVersion: route.openshift.io/v1
 # kind: Route
 # metadata:
-#   name: echo-server-pt
+#   name: echo-pt
 # spec:
-#   subdomain: ws-echo-server
+#   subdomain: echo-pt
 #   port:
 #     targetPort: 8000
 #   to:
 #     kind: Service
 #     name: echo-server
 #     weight: 100
-#   wildcardPolicy: None
 #   tls:
-#     termination: edge
-#     insecureEdgeTerminationPolicy: Allow
+#     termination: passthrough
+#     insecureEdgeTerminationPolicy: None
 # ---
 # apiVersion: route.openshift.io/v1
 # kind: Route
 # metadata:
-#   name: echo-server-reencrypt
+#   name: echo-reencrypt
 # spec:
-#   subdomain: ws-echo-server
+#   subdomain: echo-reencrypt
 #   port:
 #     targetPort: 8000
 #   to:
@@ -46,5 +45,5 @@ spec:
 #     weight: 100
 #   wildcardPolicy: None
 #   tls:
-#     termination: edge
+#     termination: reencrypt
 #     insecureEdgeTerminationPolicy: Allow
