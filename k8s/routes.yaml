@@ -1,0 +1,50 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: echo-server-edge
+spec:
+  subdomain: echo-edge
+  port:
+    targetPort: 8000
+  to:
+    kind: Service
+    name: echo-server
+    weight: 100
+  wildcardPolicy: None
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+# ---
+# apiVersion: route.openshift.io/v1
+# kind: Route
+# metadata:
+#   name: echo-server-pt
+# spec:
+#   subdomain: ws-echo-server
+#   port:
+#     targetPort: 8000
+#   to:
+#     kind: Service
+#     name: echo-server
+#     weight: 100
+#   wildcardPolicy: None
+#   tls:
+#     termination: edge
+#     insecureEdgeTerminationPolicy: Allow
+# ---
+# apiVersion: route.openshift.io/v1
+# kind: Route
+# metadata:
+#   name: echo-server-reencrypt
+# spec:
+#   subdomain: ws-echo-server
+#   port:
+#     targetPort: 8000
+#   to:
+#     kind: Service
+#     name: echo-server
+#     weight: 100
+#   wildcardPolicy: None
+#   tls:
+#     termination: edge
+#     insecureEdgeTerminationPolicy: Allow

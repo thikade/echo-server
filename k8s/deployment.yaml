@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server
+spec:
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      imagePullPolicy: Always
+      containers:
+      - name: echo-server
+        image: quay.io/thikade/echo-server:latest
+        command: ["python3", "./httpd.py"]
+        resources: {}
+        ports:
+        - containerPort: 8000
