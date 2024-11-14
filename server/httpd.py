@@ -9,9 +9,11 @@ PORT = 8000
 class GetHandler(httpd.BaseHTTPRequestHandler):
 
     def do_GET(self):
-        RESPONSE = "HEADERS RECEIVED:\n\n"
+        rList = []
         for h in self.headers:
-            RESPONSE += "{}: {}\n".format(h, self.headers[h])
+            rList.append("{}: {}".format(h, self.headers[h]))
+        rList.sort()
+        RESPONSE = "HEADERS RECEIVED:\n\n" + "\n".join(rList)
 
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
@@ -23,3 +25,4 @@ Handler = GetHandler
 httpd = socketserver.TCPServer(("", PORT), Handler)
 
 httpd.serve_forever()
+
